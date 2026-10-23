@@ -1,0 +1,18 @@
+name: Build Windows Exe
+on: [workflow_dispatch, push]
+
+jobs:
+  compile:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compile C++ with MSVC
+        run: cl.exe /EHsc /O2 /MT main.cpp /Fe:program.exe
+
+      - name: Save Executable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-program
+          path: program.exe
