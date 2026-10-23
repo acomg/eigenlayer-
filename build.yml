@@ -8,11 +8,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up MSVC Environment
-        uses: ilammy/msvc-dev-cmd@v1
-
-      - name: Compile C++ with MSVC
-        run: cl.exe /EHsc /O2 /MT main.cpp /Fe:program.exe
+      - name: Compile C++ with G++
+        run: g++ -O2 -static main.cpp -o program.exe
 
       - name: Save Executable Artifact
         uses: actions/upload-artifact@v4
